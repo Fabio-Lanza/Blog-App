@@ -31,6 +31,7 @@ function Banner() {
       .catch((error) => console.log(error));
   }, []);
 
+  
   return (
     <div className="banner-container">
       <div

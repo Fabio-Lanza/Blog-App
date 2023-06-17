@@ -16,6 +16,8 @@
     display: flex;
     justify-content: space-between;
     text-decoration: none;
+    padding-right: 100px;
+   
 }
 .nav-link,.auth-link{
     text-decoration: none;
@@ -23,7 +25,7 @@
 }
 
 .nav-link{
-    margin-left: 30px;
+    margin-left: 130px;
 }
 
 .auth-link{
