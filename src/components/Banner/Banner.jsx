@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import "./Banner.css";
 import { getDocs, collection, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../../config/firebaseConfig";
+import { useNavigate } from 'react-router-dom';
 
 function Banner() {
   const [mainArticle, setMainArticle] = useState("");
   const [otherArticles, setOtherArticles] = useState([]);
+  const navigate = useNavigate()
 
   //when this page loads, get to 5 article and display
 
@@ -17,7 +19,7 @@ function Banner() {
     const q = query(articleRef, orderBy("createdAt", "desc"), limit(5))
 
     //get documents from this collection
-    getDocs(q, articleRef)
+    getDocs( articleRef)
       .then((res) => {
         //console.log(res.docs[0].data())
         const articles = res.docs.map((item) => ({
@@ -35,7 +37,7 @@ function Banner() {
   return (
     <div className="banner-container">
       <div
-        className="main-article-container"
+        className="main-article-container" onClick={()=> navigate(`/article/${mainArticle?.id}`)}
         style={{ backgroundImage: `url(${mainArticle?.imageUrl})`}}>
             <div className="banner-info">
                 <h3>Food Article</h3>
@@ -44,7 +46,9 @@ function Banner() {
         </div>
       <div className="other-articles-container">
         {otherArticles?.map((item, index)=> (
-            <div key={index} className="other-article-item"
+            <div key={index} 
+            className="other-article-item"
+            onClick={()=> navigate(`/article/${item?.id}`)}
             style={{ backgroundImage: `url(${item?.imageUrl})`}}>
                  <div className="banner-info">
                 <h3>Food Article</h3>

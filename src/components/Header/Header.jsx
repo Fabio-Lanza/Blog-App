@@ -4,8 +4,8 @@ import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../config/firebaseConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
-import {signOut} from 'firebase/auth'
-import {toast} from 'react-toastify'
+import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 function Header() {
   //get user data
@@ -18,11 +18,11 @@ function Header() {
   return (
     <div className="header-container">
       <FaHome className="home-icon" onClick={() => navigate("/")} />
-      {user
-      ?
-      <Link to='/addarticle' className="auth-link">Add Article</Link>
-      :
-       null}
+      {user ? (
+        <Link to="/addarticle" className="auth-link">
+          Add Article
+        </Link>
+      ) : null}
 
       <div className="category-container">
         {category.map((item, index) => (
@@ -35,9 +35,9 @@ function Header() {
       {user ? (
         <div>
           <span className="username">{user.displayName}</span>
-
-          <button className="auth-link" onClick={()=> signOut(auth)}>Logout</button>
-          
+          <button className="auth-link" onClick={() => signOut(auth)}>
+            Logout
+          </button>
         </div>
       ) : (
         <Link className="auth-link" to="/auth">
